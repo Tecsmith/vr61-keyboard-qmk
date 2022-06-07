@@ -1,14 +1,14 @@
-# VR61 *"Goldilocks"* PCB
+# VR61 - Swappable Microcontroller Custom Keyboard
 
-![]()
+![VR61 Keyboard](https://i.imgur.com/MdLKkiIh.png)
 
 *VR61 MicroMod Keyboard PCB utilizing the Sparkfun STM32 MicroMod module*
 
 ## ANSI 61-key Layout
 
-* Keyboard Maintainer: [vinorodrigues](https://github.com/vinorodrigues)
-* Hardware Supported: **VR61 "Goldilocks" PCB**
-* Hardware Availability: [Github](https://github.com/Tecsmith/vr61-keyboard-pcb)
+* Keyboard Maintainer: [Vino Rodrigues](https://github.com/vinorodrigues)
+* Hardware Supported: [**VR61 PCB**](https://github.com/Tecsmith/vr61-keyboard-pcb)
+* Hardware Availability: [BYO, Gerbers and BOMs on Github](https://github.com/Tecsmith/vr61-keyboard-pcb)
 
 Make example for this keyboard (after setting up your build environment):
 

@@ -19,9 +19,9 @@
     "processor": "STM32F405",
     "url": "https://github.com/tecsmith/vr61-keyboard-pcb",
     "usb": {
-        "vid": "0x7672",
-        "pid": "0x0161",
-        "device_version": "0.0.0"
+        "vid": "0x1209",
+        "pid": "0x7672",
+        "device_version": "1.0.0"
     },
     "layouts": {
         "LAYOUT": {

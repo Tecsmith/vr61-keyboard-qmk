@@ -50,27 +50,37 @@
 /* 
  * RGB Lighting Config
  */
+
 #define RGB_DI_PIN C7
-#define RGBLED_NUM 5               // 5 LED's present, 0 = Caps Lock and then key's 5678
-#define RGBLIGHT_HUE_STEP	8	   // The number of steps to cycle through the hue by
-#define RGBLIGHT_SAT_STEP	8	   // The number of steps to increment the saturation by
-#define RGBLIGHT_VAL_STEP	8	   // The number of steps to increment the brightness by
-#define RGBLIGHT_LIMIT_VAL	255	   // The maximum brightness level
-#define RGBLIGHT_SLEEP             // RGB lighting will be switched off when the host goes to sleep
-// #define RGBLIGHT_DISABLE_KEYCODES  // Disables the ability to control RGB Light from the keycodes
-#undef RGBLIGHT_ANIMATIONS
+#define DRIVER_LED_TOTAL 5
 
-#define RGBLIGHT_DEFAULT_MODE  RGBLIGHT_MODE_STATIC_LIGHT
-// #define RGBLIGHT_DEFAULT_HUE   0
-// #define RGBLIGHT_DEFAULT_SAT   0
-// #define RGBLIGHT_DEFAULT_VAL   0
+#define RGB_DISABLE_WHEN_USB_SUSPENDED        // turn off effects when suspended
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180      // limits maximum brightness of LEDs to x out of 255. If not defined maximum brightness is set to 255
+#define ENABLE_RGB_MATRIX_SOLID_COLOR         // Static single color
+// #define ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT // Static gradient left to right, speed controls how much gradient changes
 
-/* AUDIO */
-#define WS2812_PWM_DRIVER PWMD3
-#define WS2812_PWM_CHANNEL 1
-#define WS2812_PWM_PAL_MODE 2
-#define WS2812_DMA_STREAM STM32_DMA1_STREAM2
-#define WS2812_DMA_CHANNEL 5
+
+// #define RGB_DI_PIN C7
+// #define RGBLED_NUM 5               // 5 LED's present, 0 = Caps Lock and then key's 5678
+// #define RGBLIGHT_HUE_STEP	8	   // The number of steps to cycle through the hue by
+// #define RGBLIGHT_SAT_STEP	8	   // The number of steps to increment the saturation by
+// #define RGBLIGHT_VAL_STEP	8	   // The number of steps to increment the brightness by
+// #define RGBLIGHT_LIMIT_VAL	255	   // The maximum brightness level
+// #define RGBLIGHT_SLEEP             // RGB lighting will be switched off when the host goes to sleep
+// // #define RGBLIGHT_DISABLE_KEYCODES  // Disables the ability to control RGB Light from the keycodes
+// #undef RGBLIGHT_ANIMATIONS
+
+// #define RGBLIGHT_DEFAULT_MODE  RGBLIGHT_MODE_STATIC_LIGHT
+// // #define RGBLIGHT_DEFAULT_HUE   0
+// // #define RGBLIGHT_DEFAULT_SAT   0
+// // #define RGBLIGHT_DEFAULT_VAL   0
+
+// /* AUDIO */
+// #define WS2812_PWM_DRIVER PWMD3
+// #define WS2812_PWM_CHANNEL 1
+// #define WS2812_PWM_PAL_MODE 2
+// #define WS2812_DMA_STREAM STM32_DMA1_STREAM2
+// #define WS2812_DMA_CHANNEL 5
 
 
 /*

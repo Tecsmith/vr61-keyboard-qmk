@@ -4,12 +4,11 @@
 #pragma once
 
 // Matrix configuration
-#define SPI_MATRIX_CHIP_SELECT_PIN C4
-#define SPI_MATRIX_DIVISOR 32
+// #define SPI_MATRIX_CHIP_SELECT_PIN C4
+// #define SPI_MATRIX_DIVISOR 32
 
 /*
  * SPI Configuration
- * - used for EEPROM
  */
 // #define SPI_DRIVER SPID1
 // #define SPI_SCK_PIN A5
@@ -19,12 +18,19 @@
 // #define SPI_MISO_PIN A7
 // #define SPI_MISO_PAL_MODE 5
 
-#define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN C3
+/* ----- External EEPROM ----- */
 
-#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR 16 // (168MHz/16) => 10.5MHz
-#define EXTERNAL_EEPROM_BYTE_COUNT 8192
-#define EXTERNAL_EEPROM_PAGE_SIZE 64 // it's FRAM, so it doesn't actually matter, this just sets the RAM buffer
-
+#define SPI_DRIVER SPID1
+#define SPI_SCK_PIN C10
+#define SPI_MOSI_PIN C11
+#define SPI_MISO_PIN C12
+#define EXTERNAL_FLASH_SPI_SLAVE_SELECT_PIN C3
+#define EXTERNAL_FLASH_SPI_CLOCK_DIVISOR 8             // ? going with the default
+#define EXTERNAL_FLASH_PAGE_SIZE 256                   // from spec
+#define EXTERNAL_FLASH_SECTOR_SIZE (4 * 1024)          // EXTERNAL_FLASH_SIZE / 4096
+#define EXTERNAL_FLASH_BLOCK_SIZE (64 * 1024)          // EXTERNAL_FLASH_SIZE / 256
+#define EXTERNAL_FLASH_SIZE ((128 / 8) * 1024 * 1000)  // 128Mbit
+#define EXTERNAL_FLASH_ADDRESS_SIZE 3                  // 0x000000 to 0xFFFFFF
 
 // RGB configuration
 // #define RGB_DI_PIN C6
@@ -40,6 +46,32 @@
 // #define ADC_SATURATION ((1 << 12) - 1)
 // #define ADC_CURRENT_PIN C5 // ADC12_IN15
 // #define ADC_VOLTAGE_PIN B0 // ADC12_IN8
+
+/* 
+ * RGB Lighting Config
+ */
+#define RGB_DI_PIN C7
+#define RGBLED_NUM 5               // 5 LED's present, 0 = Caps Lock and then key's 5678
+#define RGBLIGHT_HUE_STEP	8	   // The number of steps to cycle through the hue by
+#define RGBLIGHT_SAT_STEP	8	   // The number of steps to increment the saturation by
+#define RGBLIGHT_VAL_STEP	8	   // The number of steps to increment the brightness by
+#define RGBLIGHT_LIMIT_VAL	255	   // The maximum brightness level
+#define RGBLIGHT_SLEEP             // RGB lighting will be switched off when the host goes to sleep
+// #define RGBLIGHT_DISABLE_KEYCODES  // Disables the ability to control RGB Light from the keycodes
+#undef RGBLIGHT_ANIMATIONS
+
+#define RGBLIGHT_DEFAULT_MODE  RGBLIGHT_MODE_STATIC_LIGHT
+// #define RGBLIGHT_DEFAULT_HUE   0
+// #define RGBLIGHT_DEFAULT_SAT   0
+// #define RGBLIGHT_DEFAULT_VAL   0
+
+/* AUDIO */
+#define WS2812_PWM_DRIVER PWMD3
+#define WS2812_PWM_CHANNEL 1
+#define WS2812_PWM_PAL_MODE 2
+#define WS2812_DMA_STREAM STM32_DMA1_STREAM2
+#define WS2812_DMA_CHANNEL 5
+
 
 /*
  * Feature disable options

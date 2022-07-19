@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
-#define DYNAMIC_MACRO_SIZE 512
+// #define DYNAMIC_MACRO_SIZE 512
 
 #ifdef RGB_MATRIX_ENABLE
     #ifndef VIA_QMK_RGBLIGHT_ENABLE  // safe to remove after Q2-2022 `develop` PR

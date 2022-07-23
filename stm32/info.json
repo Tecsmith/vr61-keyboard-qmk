@@ -2,6 +2,7 @@
     "manufacturer": "Vino Rodrigues",
     "keyboard_name": "VR61",
     "maintainer": "vinorodrigues",
+    "processor": "STM32F405",
     "bootloader": "stm32-dfu",
     "diode_direction": "COL2ROW",
     "features": {
@@ -16,7 +17,6 @@
         "cols": ["B4", "B5", "A4", "B3", "C9", "C8", "A0", "A8", "D2"],
         "rows": ["C1", "B1", "B10", "B0", "B11", "C0", "A2", "A3"]
     },
-    "processor": "STM32F405",
     "url": "https://github.com/tecsmith/vr61-keyboard-pcb",
     "usb": {
         "vid": "0x1209",

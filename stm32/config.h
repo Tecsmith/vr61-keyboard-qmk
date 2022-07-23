@@ -51,12 +51,12 @@
  * RGB Lighting Config
  */
 
-#define RGB_DI_PIN C7
-#define DRIVER_LED_TOTAL 5
+// #define RGB_DI_PIN C7
+// #define DRIVER_LED_TOTAL 5
 
-#define RGB_DISABLE_WHEN_USB_SUSPENDED        // turn off effects when suspended
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180      // limits maximum brightness of LEDs to x out of 255. If not defined maximum brightness is set to 255
-#define ENABLE_RGB_MATRIX_SOLID_COLOR         // Static single color
+// #define RGB_DISABLE_WHEN_USB_SUSPENDED        // turn off effects when suspended
+// #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180      // limits maximum brightness of LEDs to x out of 255. If not defined maximum brightness is set to 255
+// #define ENABLE_RGB_MATRIX_SOLID_COLOR         // Static single color
 // #define ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT // Static gradient left to right, speed controls how much gradient changes
 
 

@@ -18,7 +18,9 @@
 // #define SPI_MISO_PIN A7
 // #define SPI_MISO_PAL_MODE 5
 
-/* ----- External EEPROM ----- */
+/* 
+ * External EEPROM 
+ */
 
 #define SPI_DRIVER SPID1
 #define SPI_SCK_PIN C10
@@ -31,6 +33,16 @@
 #define EXTERNAL_FLASH_BLOCK_SIZE (64 * 1024)          // EXTERNAL_FLASH_SIZE / 256
 #define EXTERNAL_FLASH_SIZE ((128 / 8) * 1024 * 1000)  // 128Mbit
 #define EXTERNAL_FLASH_ADDRESS_SIZE 3                  // 0x000000 to 0xFFFFFF
+
+/* 
+ * RGB Lighting Config
+ */
+
+#ifdef RGB_MATRIX_ENABLE
+    // The pin connected to the data pin of the LEDs
+    #define RGB_DI_PIN C6
+#endif  // RGB_MATRIX_ENABLE
+
 
 // RGB configuration
 // #define RGB_DI_PIN C6
@@ -47,33 +59,10 @@
 // #define ADC_CURRENT_PIN C5 // ADC12_IN15
 // #define ADC_VOLTAGE_PIN B0 // ADC12_IN8
 
+
 /* 
- * RGB Lighting Config
+ * Audio
  */
-
-// #define RGB_DI_PIN C7
-// #define DRIVER_LED_TOTAL 5
-
-// #define RGB_DISABLE_WHEN_USB_SUSPENDED        // turn off effects when suspended
-// #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180      // limits maximum brightness of LEDs to x out of 255. If not defined maximum brightness is set to 255
-// #define ENABLE_RGB_MATRIX_SOLID_COLOR         // Static single color
-// #define ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT // Static gradient left to right, speed controls how much gradient changes
-
-
-// #define RGB_DI_PIN C7
-// #define RGBLED_NUM 5               // 5 LED's present, 0 = Caps Lock and then key's 5678
-// #define RGBLIGHT_HUE_STEP	8	   // The number of steps to cycle through the hue by
-// #define RGBLIGHT_SAT_STEP	8	   // The number of steps to increment the saturation by
-// #define RGBLIGHT_VAL_STEP	8	   // The number of steps to increment the brightness by
-// #define RGBLIGHT_LIMIT_VAL	255	   // The maximum brightness level
-// #define RGBLIGHT_SLEEP             // RGB lighting will be switched off when the host goes to sleep
-// // #define RGBLIGHT_DISABLE_KEYCODES  // Disables the ability to control RGB Light from the keycodes
-// #undef RGBLIGHT_ANIMATIONS
-
-// #define RGBLIGHT_DEFAULT_MODE  RGBLIGHT_MODE_STATIC_LIGHT
-// // #define RGBLIGHT_DEFAULT_HUE   0
-// // #define RGBLIGHT_DEFAULT_SAT   0
-// // #define RGBLIGHT_DEFAULT_VAL   0
 
 // /* AUDIO */
 // #define WS2812_PWM_DRIVER PWMD3

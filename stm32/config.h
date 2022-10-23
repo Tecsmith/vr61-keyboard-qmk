@@ -35,17 +35,16 @@
 #define EXTERNAL_FLASH_ADDRESS_SIZE 3                  // 0x000000 to 0xFFFFFF
 
 /* 
- * RGB Lighting Config
+ * RGB Lighting/Matrix Config
  */
 
-#ifdef RGB_MATRIX_ENABLE
+#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
     // The pin connected to the data pin of the LEDs
     #define RGB_DI_PIN C6
 #endif  // RGB_MATRIX_ENABLE
 
 
 // RGB configuration
-// #define RGB_DI_PIN C6
 // #define WS2812_PWM_DRIVER PWMD3
 // #define WS2812_PWM_CHANNEL 1
 // #define WS2812_PWM_PAL_MODE 2

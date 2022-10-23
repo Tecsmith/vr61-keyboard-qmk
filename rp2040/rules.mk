@@ -3,11 +3,9 @@
 
 LTO_ENABLE = no        # NEVER "yes" for ChibiOS mcu's
 
-# RGBLIGHT_ENABLE = yes  # .. or ...
+# RGBLIGHT_ENABLE = yes  # .. or ..
 # RGB_MATRIX_ENABLE = yes
 # RGB_MATRIX_DRIVER = WS2812
 
-FLASH_DRIVER = spi
-
-OPT = g
-OPT_DEFS += -g
+# Project specific files
+QUANTUM_LIB_SRC += spi_master.c

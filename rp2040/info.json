@@ -1,4 +1,5 @@
 {
+    "keyboard_name": "VR61 (RP2040)",
     "processor": "RP2040",
     "bootloader": "rp2040",
     "matrix_pins": {

@@ -41,17 +41,3 @@
     #define ENABLE_RGB_MATRIX_SOLID_COLOR  // Static single color
 
 #endif  // RGB_MATRIX_ENABLE
-
-
-/*
- * revert VIA Protocol Version so the VIA 1.3.1 can work
- */
-#ifndef VR61_H
-    #define VR61_H
-
-    #ifdef VIA_PROTOCOL_VERSION
-        #undef VIA_PROTOCOL_VERSION
-    #endif  // VIA_PROTOCOL_VERSION
-    // #pragma message "NOTE: ** VIA_PROTOCOL_VERSION set to 9 **"
-    #define VIA_PROTOCOL_VERSION 0x0009
-#endif  // VR61_H

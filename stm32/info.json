@@ -1,4 +1,5 @@
 {
+    "keyboard_name": "VR61 (STM32)",
     "processor": "STM32F405",
     "bootloader": "stm32-dfu",
     "matrix_pins": {

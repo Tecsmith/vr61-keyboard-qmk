@@ -4,16 +4,29 @@
 
 #pragma once
 
+#include "config_common.h"
+
+
+/*
+ * SPI Configuration
+ */
+
+#define SPI_DRIVER SPID0
+#define SPI_SCK_PIN GP22
+#define SPI_MOSI_PIN GP23
+#define SPI_MISO_PIN GP20
+
+
 /* 
  * PR2040 MCU stuff
  */
 
-#define QMK_WAITING_TEST_BUSY_PIN GP8
-#define QMK_WAITING_TEST_YIELD_PIN GP9
+// #define QMK_WAITING_TEST_BUSY_PIN GP8
+// #define QMK_WAITING_TEST_YIELD_PIN GP9
 
-#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
-#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP25
-#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 500U
+// #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
+// #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP25
+// #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 500U
 
 
 /* 
@@ -24,9 +37,16 @@
     // The pin connected to the data pin of the LEDs
     #define RGB_DI_PIN GP13
     #define NOP_FUDGE 0.4
-
-    #define DRIVER_LED_TOTAL 7
 #endif  // RGB_MATRIX_ENABLE
+
+
+/*
+ * ADC Configuration
+ */
+
+#define ADC_RESOLUTION ? ? ? // ADC_CFGR1_RES_12BIT // TBD when RP2040 has analog support
+#define ADC_SATURATION ? ? ? // ((1 << 12) - 1) // TBD when RP2040 has analog support
+#define ADC_CURRENT_PIN GP26
 
 
 /*

@@ -3,5 +3,7 @@
 
 LTO_ENABLE = no        # NEVER "yes" for ChibiOS mcu's
 
+WS2812_DRIVER = vendor
+
 # Project specific files
-QUANTUM_LIB_SRC += spi_master.c
+# QUANTUM_LIB_SRC += spi_master.c

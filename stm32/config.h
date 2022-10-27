@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "config_common.h"
+
 /*
  * SPI Configuration
  */
@@ -56,7 +58,6 @@
 #define ADC_RESOLUTION ADC_CFGR1_RES_12BIT
 #define ADC_SATURATION ((1 << 12) - 1)
 #define ADC_CURRENT_PIN C5 // ADC12_IN15
-#define ADC_VOLTAGE_PIN B0 // ADC12_IN8
 
 
 /* 

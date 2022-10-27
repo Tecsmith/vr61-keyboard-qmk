@@ -3,9 +3,7 @@
 
 LTO_ENABLE = no        # NEVER "yes" for ChibiOS mcu's
 
-# RGBLIGHT_ENABLE = yes  # .. or ...
-# RGB_MATRIX_ENABLE = yes
-# RGB_MATRIX_DRIVER = WS2812
+WS2812_DRIVER = pwm
 
 FLASH_DRIVER = spi
 

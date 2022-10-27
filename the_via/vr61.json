@@ -2,14 +2,7 @@
     "name":"VR61",
     "vendorId":"0x1209",
     "productId":"0x7672",
-    "lighting": {
-        "extends":"qmk_rgblight",
-        "supportedLightingValues": [128, 129, 130, 131],
-        "underglowEffects": [
-            ["00. None", 0],
-            ["01. Solid Color", 1]
-        ]
-    },
+    "lighting": "none",
     "matrix":{ "rows":9, "cols":8 },
     "layouts":{
         "keymap":[

@@ -20,10 +20,12 @@
  * RGB Lighting/Matrix Config
  */
 
-#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+#ifdef RGB_MATRIX_ENABLE
     // The pin connected to the data pin of the LEDs
     #define RGB_DI_PIN GP13
     #define NOP_FUDGE 0.4
+
+    #define DRIVER_LED_TOTAL 7
 #endif  // RGB_MATRIX_ENABLE
 
 

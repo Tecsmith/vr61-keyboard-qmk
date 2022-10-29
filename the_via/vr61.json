@@ -1,11 +1,29 @@
 {
-    "name":"VR61",
-    "vendorId":"0x1209",
-    "productId":"0x7672",
+    "name": "VR61",
+    "vendorId": "0x1209",
+    "productId": "0x7672",
     "lighting": "none",
-    "matrix":{ "rows":9, "cols":8 },
-    "layouts":{
-        "keymap":[
+    "matrix": {"rows": 9, "cols": 8},
+    "customKeycodes": [
+        {"name": "KC_TSKV", "shortName": "Task View", "title": "Windows Task View"},
+        {"name": "KC_FEXP", "shortName": "File Explorer", "title": "Windows File Explorer"},
+        {"name": "KC_CORT", "shortName": "Cortana", "title": "Windows Cortana"},
+        {"name": "KC_MCON", "shortName": "Misson Control", "title": "macOS Mission Control"},
+        {"name": "KC_LPAD", "shortName": "Launchpad", "title": "macOS Launchpad"},
+        {"name": "KC_SIRI", "shortName": "Siri", "title": "macOS Siri"},
+        {"name": "KC_SCAP", "shortName": "Screen Capture", "title": "macOS Screen Capture"},
+        {"name": "KB_ARRW", "shortName": "Toggle Arrows", "title": "Toggle Right Keys are Arrows feature"},
+        {"name": "KB_RSFT", "shortName": "Shift | Up", "title": "KC_RSFT or KC_UP"},
+        {"name": "KB_RALT", "shortName": "Alt | Left", "title": "KC_RALT or KC_LEFT"},
+        {"name": "KB_RAPP", "shortName": "Menu | Down", "title": "KC_MENU or KC_DOWN"},
+        {"name": "KB_RCMD", "shortName": "Cmnd | Left", "title": "KC_RGUI or KC_LEFT"},
+        {"name": "KB_ROPT", "shortName": "Opt | Down", "title": "KC_RALT or KC_DOWN"},
+        {"name": "KB_RCTL", "shortName": "Ctrl | Right", "title": "KC_RCTL or KC_RGHT"},
+        {"name": "KB_REEP", "shortName": "Reset EEPROM", "title": "Reset Keymap to Default"},
+        {"name": "KB_VRSN", "shortName": "Version", "title": "Type Firmware Version"}
+    ],
+    "layouts": {
+        "keymap": [
             [{"c":"#777777"},"0,0",{"c":"#cccccc"},"0,1","0,2","0,3","0,4","0,5","0,6","0,7","5,0","5,1","5,2","5,3","5,4",{"w":2,"c":"#aaaaaa"},"5,6"],
             [{"w":1.5},"1,0",{"c":"#cccccc"},"1,1","1,2","1,3","1,4","1,5","1,6","1,7","6,0","6,1","6,2","6,3","6,4",{"w":1.5},"6,6"],
             [{"w":1.75,"c":"#aaaaaa"},"2,0",{"c":"#cccccc"},"2,1","2,2","2,3","2,4","2,5","2,6","2,7","7,0","7,1","7,2","7,3",{"w":2.25,"c":"#777777"},"7,6"],

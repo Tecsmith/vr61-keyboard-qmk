@@ -7,16 +7,18 @@
 ## ANSI 61-key Layout
 
 * Keyboard Maintainer: [Vino Rodrigues](https://github.com/vinorodrigues)
-* Hardware Supported: [**VR61 PCB**](https://github.com/Tecsmith/vr61-keyboard-pcb)
+* Hardware Supported: [**VR61 PCB**](https://github.com/Tecsmith/vr61-keyboard-pcb) + Sparkfun Micromod STM32 or Micromod RP2040 module
 * Hardware Availability: [BYO, Gerbers and BOMs on Github](https://github.com/Tecsmith/vr61-keyboard-pcb)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make tecsmith/vr61:default
+    make tecsmith/vr61/stm32:default
+    make tecsmith/vr61/rp2040:default
 
 Flashing example for this keyboard:
 
-    make tecsmith/vr61:default:flash
+    make tecsmith/vr61/stm32:default:flash
+    make tecsmith/vr61/rp2040:default:flash
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 

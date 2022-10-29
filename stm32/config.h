@@ -17,7 +17,7 @@
 // #define SPI_MISO_PAL_MODE 5
 
 /* 
- * External EEPROM 
+ * External Flash
  */
 
 #define SPI_DRIVER SPID1

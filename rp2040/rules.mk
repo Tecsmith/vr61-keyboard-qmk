@@ -5,9 +5,7 @@ OPT_DEFS += -DMICROMOD_RP2040  # #define
 
 LTO_ENABLE = no  # NEVER "yes" for ChibiOS mcu's
 
-RGB_MATRIX_ENABLE = yes
-RGB_MATRIX_DRIVER = WS2812
 WS2812_DRIVER = vendor
 
 # Project specific files
-# QUANTUM_LIB_SRC += spi_master.c
+QUANTUM_LIB_SRC += spi_master.c

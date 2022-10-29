@@ -4,9 +4,6 @@
 
 #pragma once
 
-// The number of LEDs connected
-#define DRIVER_LED_TOTAL 5
-
 /* 
  * RGB Lighting Config
  */
@@ -25,7 +22,9 @@
 
     // ---------- RGB Matri library ----------
 
-    #define RGBLED_NUM 5
+    #define RGB_MATRIX_LED_COUNT 5
+    #define RGBLED_NUM 5  // TBD: Once convergence with these defines occurs, remove.
+    #define DRIVER_LED_TOTAL 5  // TBD: Once convergence with these defines occurs, remove.
 
     #define RGB_DISABLE_WHEN_USB_SUSPENDED  // turn off effects when suspended
     // #define RGB_MATRIX_LED_FLUSH_LIMIT 16  // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)

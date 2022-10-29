@@ -18,22 +18,13 @@
 
 
 /* 
- * PR2040 MCU stuff
- */
-
-// #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
-// #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP25
-// #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 500U
-
-
-/* 
  * RGB Lighting/Matrix Config
  */
 
 #ifdef RGB_MATRIX_ENABLE
     // The pin connected to the data pin of the LEDs
     #define RGB_DI_PIN GP13
-    #define NOP_FUDGE 0.4
+    // #define NOP_FUDGE 0.4
 #endif  // RGB_MATRIX_ENABLE
 
 

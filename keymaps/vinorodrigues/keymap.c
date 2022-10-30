@@ -9,6 +9,9 @@ typedef union {
     uint32_t raw;
     struct {
         bool in_arrow_mode:1;
+        // #ifdef RGB_MATRIX_ENABLE
+        // uint8_t rgb_value;
+        // #endif  // RGB_MATRIX_ENABLE
     };
 } user_config_t;
 
@@ -16,7 +19,8 @@ enum {
     _L0,
     _L1,
     _L2,
-    _L3
+    _L3,
+    _L4
 };
 
 enum {
@@ -97,10 +101,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_L1] = LAYOUT_60_ansi(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-        KB_ARRW, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, KC_SCAP, KC_HOME, KC_END,  KC_INS,
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, _______, KC_PGUP,          _______,
+        KB_ARRW, _______, KC_UP,   _______, _______, _______, _______, _______, _______, RGB_VAI, KC_SCAP, KC_HOME, KC_END,  KC_INS,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, RGB_VAD, _______, KC_PGUP,          _______,
         _______,          _______, _______, _______, KB_VRSN, QK_BOOT, _______, _______, _______, _______, KC_PGDN,          _______,
-        _______, MO(_L3), MO(_L2),                            _______,                            _______, _______, _______, _______
+        MO(_L4), MO(_L3), MO(_L2),                            _______,                            _______, _______, _______, _______
     ),
 
     /*
@@ -143,10 +147,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
         _______, _______, _______,                            _______,                            _______, _______, _______, _______
+    ),
+
+    [_L4] = LAYOUT_60_ansi(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
+        _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
+        _______, _______, _______,                            _______,                            _______, _______, _______, _______
     )
+
 };
 
 user_config_t user_config;
+
 
 /*
  * RGB Common
@@ -154,20 +168,16 @@ user_config_t user_config;
 
 #ifdef RGB_MATRIX_ENABLE
 
-#ifndef RGB_MATRIX_VAL_STEP
-    #define RGB_MATRIX_VAL_STEP 8
-#endif
+// #ifndef RGB_MATRIX_VAL_STEP
+//     #define RGB_MATRIX_VAL_STEP 8
+// #endif
 
 #ifndef RGB_MATRIX_MAXIMUM_BRIGHTNESS
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 0xFF
 #endif
 
-void keyboard_post_init_user(void) {
-    rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-}
-
 void rgb_matrix_indicators_user() {
+    // uint8_t v = user_config.rgb_value;
     uint8_t v = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
 
     if (host_keyboard_led_state().caps_lock) {
@@ -185,6 +195,9 @@ void rgb_matrix_indicators_user() {
             break;
         case 3:
             for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, 0, 0);  // red
+            break;
+        case 4:
+            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, v, 0);  // yellow
             break;
         default:
             break;
@@ -208,6 +221,25 @@ void suspend_wakeup_init_user(void) {
 
 bool delkey_registered = false;
 uint32_t __keycode_raised = 0;
+
+void keyboard_post_init_user(void) {
+    // Read the user config from EEPROM
+    user_config.raw = eeconfig_read_user();
+
+    #ifdef RGB_MATRIX_ENABLE
+    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+    #endif  // RGB_MATRIX_ENABLE
+}
+
+void eeconfig_init_user(void) {
+    // EEPROM is getting reset!
+    user_config.raw = 0;
+    // #ifdef RGB_MATRIX_ENABLE
+    // user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+    // #endif  // RGB_MATRIX_ENABLE
+    eeconfig_update_kb(user_config.raw);
+}
 
 bool __get_keycode_raised(uint8_t n) {
     return __keycode_raised & (1 << n);
@@ -323,12 +355,6 @@ bool vr61_code_3(keyrecord_t *record, uint16_t data1, uint16_t data2, uint16_t d
     return false;  // Skip all further processing of this key
 }
 
-void eeconfig_init_user(void) {
-    // EEPROM is getting reset!
-    user_config.raw = 0;
-    eeconfig_update_kb(user_config.raw);
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 
@@ -342,6 +368,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 wait_ms(10);
             }
             return true; break;
+
+        // case RGB_VAI:
+        //     if (user_config.rgb_value < RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
+        //         if (user_config.rgb_value + RGB_MATRIX_VAL_STEP > RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
+        //             user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+        //         } else {
+        //             user_config.rgb_value += RGB_MATRIX_VAL_STEP;
+        //         }
+        //         eeconfig_update_kb(user_config.raw);
+        //     }
+        //     return false;
+        //     break;
+
+        // case RGB_VAD:
+        //     if (user_config.rgb_value > RGB_MATRIX_VAL_STEP) {
+        //         // cannot be 0, minimum = RGB_MATRIX_VAL_STEP
+        //         if (user_config.rgb_value - RGB_MATRIX_VAL_STEP < RGB_MATRIX_VAL_STEP) {
+        //             user_config.rgb_value = RGB_MATRIX_VAL_STEP;
+        //         } else {
+        //             user_config.rgb_value -= RGB_MATRIX_VAL_STEP;
+        //         }
+        //         eeconfig_update_kb(user_config.raw);
+        //     }
+        //     return false;
+        //     break;
 
         #endif  // RGB_MATRIX_ENABLE
 
@@ -393,7 +444,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KB_ROPT: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RALT, KC_DOWN, KC_PGDN); break;
 
         // right ctrl ot right arrow
-        case KB_RCTL: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RCTL, KC_RIGHT, KC_END); break;          
+        case KB_RCTL: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RCTL, KC_RIGHT, KC_END); break;
 
         // Reset EEPROM -> Keymap to Defaul
         case KB_REEP:           

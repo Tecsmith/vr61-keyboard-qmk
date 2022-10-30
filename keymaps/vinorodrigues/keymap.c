@@ -9,9 +9,9 @@ typedef union {
     uint32_t raw;
     struct {
         bool in_arrow_mode:1;
-        // #ifdef RGB_MATRIX_ENABLE
-        // uint8_t rgb_value;
-        // #endif  // RGB_MATRIX_ENABLE
+        #ifdef RGB_MATRIX_ENABLE
+        uint8_t rgb_value;
+        #endif  // RGB_MATRIX_ENABLE
     };
 } user_config_t;
 
@@ -101,8 +101,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_L1] = LAYOUT_60_ansi(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-        KB_ARRW, _______, KC_UP,   _______, _______, _______, _______, _______, _______, RGB_VAI, KC_SCAP, KC_HOME, KC_END,  KC_INS,
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, RGB_VAD, _______, KC_PGUP,          _______,
+        KB_ARRW, _______, KC_UP,   _______, _______, _______, _______, _______, RGB_VAI, KC_VOLU, KC_SCAP, KC_HOME, KC_END,  KC_INS,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, RGB_VAD, KC_VOLD, _______, KC_PGUP,          _______,
         _______,          _______, _______, _______, KB_VRSN, QK_BOOT, _______, _______, _______, _______, KC_PGDN,          _______,
         MO(_L4), MO(_L3), MO(_L2),                            _______,                            _______, _______, _______, _______
     ),
@@ -168,17 +168,17 @@ user_config_t user_config;
 
 #ifdef RGB_MATRIX_ENABLE
 
-// #ifndef RGB_MATRIX_VAL_STEP
-//     #define RGB_MATRIX_VAL_STEP 8
-// #endif
+#ifndef RGB_MATRIX_VAL_STEP
+    #define RGB_MATRIX_VAL_STEP 8
+#endif
 
 #ifndef RGB_MATRIX_MAXIMUM_BRIGHTNESS
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 0xFF
 #endif
 
 void rgb_matrix_indicators_user() {
-    // uint8_t v = user_config.rgb_value;
-    uint8_t v = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+    uint8_t v = user_config.rgb_value;
+    // uint8_t v = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
 
     if (host_keyboard_led_state().caps_lock) {
         rgb_matrix_set_color(0, v, v, v);
@@ -188,16 +188,16 @@ void rgb_matrix_indicators_user() {
 
     switch (current_layer) {
         case 1:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, 0, 0, v);  // blue
-            break;
-        case 2:
             for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, 0, v, 0);  // green
             break;
+        case 2:
+            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, 0, 0, v);  // blue
+            break;
         case 3:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, 0, 0);  // red
+            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, v, 0);  // yellow
             break;
         case 4:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, v, 0);  // yellow
+            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, 0, 0);  // red
             break;
         default:
             break;
@@ -235,10 +235,10 @@ void keyboard_post_init_user(void) {
 void eeconfig_init_user(void) {
     // EEPROM is getting reset!
     user_config.raw = 0;
-    // #ifdef RGB_MATRIX_ENABLE
-    // user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-    // #endif  // RGB_MATRIX_ENABLE
-    eeconfig_update_kb(user_config.raw);
+    #ifdef RGB_MATRIX_ENABLE
+    user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+    #endif  // RGB_MATRIX_ENABLE
+    eeconfig_update_user(user_config.raw);
 }
 
 bool __get_keycode_raised(uint8_t n) {
@@ -369,30 +369,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true; break;
 
-        // case RGB_VAI:
-        //     if (user_config.rgb_value < RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
-        //         if (user_config.rgb_value + RGB_MATRIX_VAL_STEP > RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
-        //             user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-        //         } else {
-        //             user_config.rgb_value += RGB_MATRIX_VAL_STEP;
-        //         }
-        //         eeconfig_update_kb(user_config.raw);
-        //     }
-        //     return false;
-        //     break;
+        case RGB_VAI:
+        case BL_INC:
+            if (user_config.rgb_value < RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
+                if ((user_config.rgb_value + RGB_MATRIX_VAL_STEP) > RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
+                    user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+                } else {
+                    user_config.rgb_value += RGB_MATRIX_VAL_STEP;
+                }
+                eeconfig_update_user(user_config.raw);
+            }
+            return false;
+            break;
 
-        // case RGB_VAD:
-        //     if (user_config.rgb_value > RGB_MATRIX_VAL_STEP) {
-        //         // cannot be 0, minimum = RGB_MATRIX_VAL_STEP
-        //         if (user_config.rgb_value - RGB_MATRIX_VAL_STEP < RGB_MATRIX_VAL_STEP) {
-        //             user_config.rgb_value = RGB_MATRIX_VAL_STEP;
-        //         } else {
-        //             user_config.rgb_value -= RGB_MATRIX_VAL_STEP;
-        //         }
-        //         eeconfig_update_kb(user_config.raw);
-        //     }
-        //     return false;
-        //     break;
+        case RGB_VAD:
+        case BL_DEC:
+            if (user_config.rgb_value > RGB_MATRIX_VAL_STEP) {
+                // cannot be 0, minimum = RGB_MATRIX_VAL_STEP
+                if ((user_config.rgb_value - RGB_MATRIX_VAL_STEP) < RGB_MATRIX_VAL_STEP) {
+                    user_config.rgb_value = RGB_MATRIX_VAL_STEP;
+                } else {
+                    user_config.rgb_value -= RGB_MATRIX_VAL_STEP;
+                }
+                eeconfig_update_user(user_config.raw);
+            }
+            return false;
+            break;
 
         #endif  // RGB_MATRIX_ENABLE
 
@@ -415,16 +417,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_LPAD: return vr61_consumer_send(record, _AC_SHOW_ALL_APPS); break;
 
         // macOS Siri
-        case KC_SIRI: return vr61_code_2(record, KC_LOPT, KC_SPACE);
+        case KC_SIRI: return vr61_code_2(record, KC_LOPT, KC_SPACE); break;
 
         // macOS Screen Capture
-        case KC_SCAP: return vr61_code_3(record, KC_LSFT, KC_LCMD, KC_4);
+        case KC_SCAP: return vr61_code_3(record, KC_LSFT, KC_LCMD, KC_4); break;
 
         // toggle right modifiers are arrows feature
         case KB_ARRW:           
             if (record->event.pressed) {
                 user_config.in_arrow_mode ^= 1;
-                eeconfig_update_kb(user_config.raw);
+                eeconfig_update_user(user_config.raw);
             }
             return false; break;
 
@@ -454,6 +456,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             eeconfig_init_quantum();
             soft_reset_keyboard();
             return false;
+            break;
 
         // debug, type version
         case KB_VRSN:            
@@ -463,8 +466,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+            break;
 
         default:
             return true; /* Process all other keycodes normally */
+            break;
     }
 }

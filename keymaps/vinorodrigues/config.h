@@ -20,3 +20,6 @@
 /* Make Caps-Lock Tap/Hold Faster */
 #undef TAPPING_TERM
 #define TAPPING_TERM 150
+#define PERMISSIVE_HOLD
+
+#define VIA_EEPROM_ALLOW_RESET

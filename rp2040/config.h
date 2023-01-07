@@ -25,6 +25,13 @@
     // The pin connected to the data pin of the LEDs
     #define RGB_DI_PIN GP13
     // #define NOP_FUDGE 0.4
+
+    // from https://discord.com/channels/798171334756401183/798171873951219754/1061408936680488980
+    #error TODO!
+    #define WS2812_TIMING ??
+    #define WS2812_T1H ??
+    #define WS2812_T0H ??
+    #define WS2812_TRST_US ??
 #endif  // RGB_MATRIX_ENABLE
 
 

@@ -2,25 +2,27 @@
     "name": "VR61",
     "vendorId": "0x1209",
     "productId": "0x7672",
-    "lighting": "none",
+    "keycodes": [],
     "matrix": {"rows": 9, "cols": 8},
     "customKeycodes": [
-        {"shortName": "KC_TSKV", "name": "Task View", "title": "Windows Task View"},
-        {"shortName": "KC_FEXP", "name": "File Explorer", "title": "Windows File Explorer"},
-        {"shortName": "KC_CORT", "name": "Cortana", "title": "Windows Cortana"},
-        {"shortName": "KC_MCON", "name": "Misson Control", "title": "macOS Mission Control"},
-        {"shortName": "KC_LPAD", "name": "Launchpad", "title": "macOS Launchpad"},
+        {"shortName": "KC_TASK", "name": "Task View", "title": "Windows Task View"},
+        {"shortName": "KC_FLXP", "name": "File Explorer", "title": "Windows File Explorer"},
+        {"shortName": "KC_CRTA", "name": "Cortana", "title": "Windows Cortana"},
         {"shortName": "KC_SIRI", "name": "Siri", "title": "macOS Siri"},
-        {"shortName": "KC_SCAP", "name": "Screen Capture", "title": "macOS Screen Capture"},
-        {"shortName": "KB_ARRW", "name": "Toggle Arrows", "title": "Toggle Right Keys are Arrows feature"},
-        {"shortName": "KB_RSFT", "name": "Shift ↑", "title": "KC_RSFT or KC_UP"},
-        {"shortName": "KB_RALT", "name": "Alt ←", "title": "KC_RALT or KC_LEFT"},
-        {"shortName": "KB_RAPP", "name": "Menu ↓", "title": "KC_MENU or KC_DOWN"},
-        {"shortName": "KB_RCMD", "name": "Cmnd ←", "title": "KC_RGUI or KC_LEFT"},
-        {"shortName": "KB_ROPT", "name": "Opt ↓", "title": "KC_RALT or KC_DOWN"},
-        {"shortName": "KB_RCTL", "name": "Ctrl →", "title": "KC_RCTL or KC_RGHT"},
-        {"shortName": "KB_REEP", "name": "Reset EEPROM", "title": "Reset Keymap to Default"},
-        {"shortName": "KB_VRSN", "name": "Version", "title": "Type Firmware Version"}
+        {"shortName": "KC_SNAP", "name": "Screen Capture", "title": "macOS Screen Capture"},
+      
+        {"shortName": "KC_ARRW", "name": "Toggle Arrows Mode", "title": "Toggle Right Keys are Arrows feature"},
+
+        {"shortName": "SP_RSFT", "name": "Shift / Up", "title": "KC_RSFT or KC_UP"},
+        {"shortName": "SP_RALF", "name": "Alt / Left", "title": "KC_RALT or KC_LEFT"},
+        {"shortName": "SP_RWLF", "name": "Win / Left", "title": "KC_RGUI or KC_LEFT"},
+        {"shortName": "SP_RWDN", "name": "Wib / Down", "title": "KC_RGUI or KC_DOWN"},
+        {"shortName": "SP_RMDN", "name": "Menu / Down", "title": "KC_MENU or KC_DOWN"},
+        {"shortName": "SP_RADN", "name": "Alt / Down", "title": "KC_RALT or KC_DOWN"},
+        {"shortName": "SP_RCTL", "name": "Ctrl / Down", "title": "KC_RCTL or KC_RGHT"},
+
+        {"shortName": "KC_REEP", "name": "Reset EEPROM", "title": "Reset Keymap to Default"},
+        {"shortName": "KC_VRSN", "name": "Version", "title": "Type Firmware Version"}
     ],
     "layouts": {
         "labels": [

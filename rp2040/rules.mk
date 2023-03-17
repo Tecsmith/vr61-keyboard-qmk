@@ -9,3 +9,5 @@ WS2812_DRIVER = vendor
 
 # Project specific files
 QUANTUM_LIB_SRC += spi_master.c
+
+VPATH += keyboards/tecsmith/vr61/common

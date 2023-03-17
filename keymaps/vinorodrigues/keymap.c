@@ -2,18 +2,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include QMK_KEYBOARD_H
-#include "version.h"
-// #include "post_config.h"
+#include "tecsmith_common.h"
 
-typedef union {
-    uint32_t raw;
-    struct {
-        bool in_arrow_mode:1;
-        #ifdef RGB_MATRIX_ENABLE
-        uint8_t rgb_value;
-        #endif  // RGB_MATRIX_ENABLE
-    };
-} user_config_t;
+// clang-format off
 
 enum {
     _L0,
@@ -24,40 +15,22 @@ enum {
 };
 
 enum {
-    KC_TSKV = USER00,  // Windows Task View
-    KC_FEXP,           // Windows File Explorer
-    KC_CORT,           // Windows Cortana
-    KC_MCON,           // macOS Mission Control
-    KC_LPAD,           // macOS Launchpad
-    KC_SIRI,           // macOS Siri
-    KC_SCAP,           // macOS Screen Capture
-    KB_ARRW,           // toggle right modifiers are arrows feature
-    KB_RSFT,           // right shift or up arrow
-    KB_RALT,           // right alt or left arrow
-    KB_RAPP,           // menu or down arrow (Windows Menu)
-    KB_RCMD,           // right gui or left arrow (macOS Command)
-    KB_ROPT,           // right alt or down arrow (macOS Option)
-    KB_RCTL,           // right ctrl ot right arrow
-    KB_REEP,           // Reset EEPROM -> Keymap to Defaul
-    KB_VRSN            // debug, type version
-};
-
-enum {
-    KC_PB01 = PROGRAMMABLE_BUTTON_1,
-    KC_PB02 = PROGRAMMABLE_BUTTON_2,
-    KC_PB03 = PROGRAMMABLE_BUTTON_3,
-    KC_PB04 = PROGRAMMABLE_BUTTON_4,
-    KC_PB05 = PROGRAMMABLE_BUTTON_5,
-    KC_PB06 = PROGRAMMABLE_BUTTON_6,
-    KC_PB07 = PROGRAMMABLE_BUTTON_7,
-    KC_PB08 = PROGRAMMABLE_BUTTON_8,
-    KC_PB09 = PROGRAMMABLE_BUTTON_9,
-    KC_PB10 = PROGRAMMABLE_BUTTON_10
-};
-
-enum macos_consumer_usages {
-    _AC_SHOW_ALL_WINDOWS = 0x29F,  // mapped to KC_MCON
-    _AC_SHOW_ALL_APPS    = 0x2A0  // mapped to KC_LPAD
+    MACRO00 = QK_MACRO_0,
+    MACRO01 = QK_MACRO_1,
+    MACRO02 = QK_MACRO_2,
+    MACRO03 = QK_MACRO_3,
+    MACRO04 = QK_MACRO_4,
+    MACRO05 = QK_MACRO_5,
+    MACRO06 = QK_MACRO_6,
+    MACRO07 = QK_MACRO_7,
+    MACRO08 = QK_MACRO_8,
+    MACRO09 = QK_MACRO_9,
+    MACRO10 = QK_MACRO_10,
+    MACRO11 = QK_MACRO_11,
+    MACRO12 = QK_MACRO_12,
+    MACRO13 = QK_MACRO_13,
+    MACRO14 = QK_MACRO_14,
+    MACRO15 = QK_MACRO_15
 };
 
 /* Special Keys */
@@ -67,7 +40,7 @@ enum macos_consumer_usages {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
-     * │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ Backsp│
+     * │Esc│ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ Backsp│
      * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
      * │ Tab │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │  \  │
      * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
@@ -75,15 +48,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
      * │ Shift  │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │    Shift │
      * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
-     * │Ctrl│GUI │Alt │                        │ Alt│ GUI│Menu│Ctrl│
+     * │Ctrl│GUI │Alt │                        │ Fn1 │Alt │GUI │Ctrl│    * GUI / Alt swapped for Mac
      * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
      */
     [_L0] = LAYOUT_60_ansi(
-        KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,
         SK_LT1C, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,
-        KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KB_RSFT,
-        KC_LCTL, KC_LALT, KC_LGUI,                            KC_SPC,                             MO(_L1), KB_RCMD, KB_ROPT, KB_RCTL
+        KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          SP_RSFT,
+        KC_LCTL, KC_LALT, KC_LGUI,                            KC_SPC,                             MO(_L1), SP_RWLF, SP_RADN, SP_RCTL
     ),
 
     /*
@@ -101,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_L1] = LAYOUT_60_ansi(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,
-        KB_ARRW, _______, KC_UP,   _______, _______, _______, _______, _______, RGB_VAI, KC_VOLU, KC_SCAP, KC_HOME, KC_END,  _______,
+        KC_ARRW, _______, KC_UP,   _______, _______, _______, _______, _______, RGB_VAI, KC_VOLU, KC_SNAP, KC_HOME, KC_END,  _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, RGB_VAD, KC_VOLD, KC_PGUP, KC_PGDN,          _______,
-        _______,          _______, _______, _______, KB_VRSN, QK_BOOT, _______, _______, _______, KC_INS,  KC_DEL,           _______,
+        _______,          _______, _______, _______, KC_VRSN, _______, _______, _______, _______, KC_INS,  KC_DEL,           _______,
         MO(_L4), MO(_L3), MO(_L2),                            _______,                            _______, _______, _______, _______
     ),
 
@@ -142,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
      */
     [_L3] = LAYOUT_60_ansi(
-        _______, KC_PB01, KC_PB02, KC_PB03, KC_PB04, KC_PB05, KC_PB06, KC_PB07, KC_PB08, KC_PB09, KC_PB10, _______, _______, _______,
+        _______, PB_1,    PB_2,    PB_3,    PB_4,    PB_5,    PB_6,    PB_7,    PB_8,    PB_9,    PB_10,   _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
@@ -150,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_L4] = LAYOUT_60_ansi(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        QK_BOOT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_REEP,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, 
@@ -159,317 +132,84 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-user_config_t user_config;
-
-
 /*
- * RGB Common
+ * Key Overrides
  */
 
-#ifdef RGB_MATRIX_ENABLE
+const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t tilde_esc_override = ko_make_basic(MOD_MASK_SHIFT, KC_ESC, S(KC_GRV));
+const key_override_t grave_esc_override = ko_make_basic(MOD_MASK_GUI, KC_ESC, KC_GRV);
 
-#ifndef RGB_MATRIX_VAL_STEP
-    #define RGB_MATRIX_VAL_STEP 8
-#endif
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &delete_key_override,
+    &tilde_esc_override,
+    &grave_esc_override,
+    NULL  // Null terminate the array of overrides!
+};
 
-#ifndef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 0xFF
-#endif
-
-void rgb_matrix_indicators_user() {
-    uint8_t v = user_config.rgb_value;
-    // uint8_t v = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-
-    if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(0, v, v, v);
-    }
-
-    uint8_t current_layer = get_highest_layer(layer_state | default_layer_state);
-
-    switch (current_layer) {
-        case 1:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, 0, v, 0);  // green
-            break;
-        case 2:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, 0, 0, v);  // blue
-            break;
-        case 3:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, v, 0);  // yellow
-            break;
-        case 4:
-            for (uint8_t i = 1; i <= 4; i++) rgb_matrix_set_color(i, v, 0, 0);  // red
-            break;
-        default:
-            break;
-    }        
-}
-
-void suspend_power_down_user(void) {
-    rgb_matrix_set_suspend_state(true);
-}
-
-void suspend_wakeup_init_user(void) {
-    rgb_matrix_set_suspend_state(false);
-}
-
-#endif  // RGB_MATRIX_ENABLE
-
-
-/*
- * Keyboard Code
- */
-
-bool delkey_registered = false;
-uint32_t __keycode_raised = 0;
+// clang-format on
 
 void keyboard_post_init_user(void) {
-    // Read the user config from EEPROM
-    user_config.raw = eeconfig_read_user();
-
-    #ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-    rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-    #endif  // RGB_MATRIX_ENABLE
+    keyboard_post_init_tecsmith();
 }
 
 void eeconfig_init_user(void) {
-    // EEPROM is getting reset!
-    user_config.raw = 0;
-    #ifdef RGB_MATRIX_ENABLE
-    user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-    #endif  // RGB_MATRIX_ENABLE
-    eeconfig_update_user(user_config.raw);
+    eeconfig_init_tecsmith();
 }
 
-bool __get_keycode_raised(uint8_t n) {
-    return __keycode_raised & (1 << n);
-}
-
-void __set_keycode_raised(uint8_t n, bool b) {
-    if (b) {
-        __keycode_raised |= 1 << n;
-    } else {
-        __keycode_raised &= ~(1 << n);
-    }
-}
-
-bool vr61_process_special_k(uint16_t keycode, keyrecord_t *record, bool arrow_mode, uint8_t k_norm, uint8_t k_spcl, uint8_t k_altr) {
-    bool is_raised = get_highest_layer(layer_state|default_layer_state) != 0;
-
-    if (record->event.pressed) {
-        __set_keycode_raised(keycode - USER00, is_raised);  // save for key release event
-        if (is_raised) {
-            // *** Fn keyed ***
-            if (arrow_mode) {
-                // alternate key
-                register_code(k_altr);
-            } else {
-                // special key
-                register_code(k_spcl);
-            }
-        } else {
-            // *** normal, un-Fn'ed ***
-            if (arrow_mode) {
-                // special key
-                register_code(k_spcl);
-            } else {
-                // normal key
-                register_code(k_norm);
-            }
-        }
-    } else {
-        if (__get_keycode_raised(keycode - USER00)) {
-            // *** Fn keyed ***
-            if (arrow_mode) {
-                // alternate key
-                unregister_code(k_altr);
-            } else {
-                // special key
-                unregister_code(k_spcl);
-            }
-        } else {
-            // *** normal, un-Fn'ed ***
-            if (arrow_mode) {
-                // special key
-                unregister_code(k_spcl);
-            } else {
-                // normal key
-                unregister_code(k_norm);
-            }
-        }
-    }
-    return false;
-}
-
-bool vr61_backspace_special(uint16_t keycode, keyrecord_t *record) {
-    uint8_t mod_state = get_mods();
-
-    if (record->event.pressed) {
-        if (mod_state & MOD_MASK_SHIFT) {
-            del_mods(MOD_MASK_SHIFT);
-            register_code(KC_DEL);
-            delkey_registered = true;
-            set_mods(mod_state);
-            return false;
-        }
-    } else {
-        if (delkey_registered) {
-            unregister_code(KC_DEL);
-            delkey_registered = false;
-            return false;
-        }
-    }
-    return true;  // normal backspace, pass on
-}
-
-bool vr61_consumer_send(keyrecord_t *record, uint16_t data) {
-    if (record->event.pressed) {
-        host_consumer_send(data);
-    } else {
-        host_consumer_send(0);
-    }
-    return false;  // Skip all further processing of this key
-}
-
-bool vr61_code_2(keyrecord_t *record, uint16_t data1, uint16_t data2) {
-    if (record->event.pressed) {
-        register_code(data1);
-        register_code(data2);
-    } else {
-        unregister_code(data2);
-        unregister_code(data1);
-    }
-    return false;  // Skip all further processing of this key
-}
-
-bool vr61_code_3(keyrecord_t *record, uint16_t data1, uint16_t data2, uint16_t data3) {
-    if (record->event.pressed) {
-        register_code(data1);
-        register_code(data2);
-        register_code(data3);
-    } else {
-        unregister_code(data3);
-        unregister_code(data2);
-        unregister_code(data1);
-    }
-    return false;  // Skip all further processing of this key
+void housekeeping_task_user(void) {
+    housekeeping_task_tecsmith();
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
+    if (!process_record_tecsmith(keycode, record)) {
+        return false;
+    }
+    return true;
+}
 
-        // handle RGB toggle key - this ensures caps lock always works
-        #ifdef RGB_MATRIX_ENABLE
+/* 
+ * RGB
+ */
 
-        case QK_BOOT:
-            if (record->event.pressed) {
-                rgb_matrix_set_color_all(RGB_MATRIX_MAXIMUM_BRIGHTNESS, 0, 0);  // All red
-                rgb_matrix_driver.flush();
-                wait_ms(10);
-            }
-            return true; break;
+#if defined(RGB_MATRIX_ENABLE) && defined(VIA_ENABLE)
 
-        case RGB_VAI:
-        case BL_INC:
-            if (user_config.rgb_value < RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
-                if ((user_config.rgb_value + RGB_MATRIX_VAL_STEP) > RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
-                    user_config.rgb_value = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-                } else {
-                    user_config.rgb_value += RGB_MATRIX_VAL_STEP;
-                }
-                eeconfig_update_user(user_config.raw);
-            }
-            return false;
-            break;
-
-        case RGB_VAD:
-        case BL_DEC:
-            if (user_config.rgb_value > RGB_MATRIX_VAL_STEP) {
-                // cannot be 0, minimum = RGB_MATRIX_VAL_STEP
-                if ((user_config.rgb_value - RGB_MATRIX_VAL_STEP) < RGB_MATRIX_VAL_STEP) {
-                    user_config.rgb_value = RGB_MATRIX_VAL_STEP;
-                } else {
-                    user_config.rgb_value -= RGB_MATRIX_VAL_STEP;
-                }
-                eeconfig_update_user(user_config.raw);
-            }
-            return false;
-            break;
-
-        #endif  // RGB_MATRIX_ENABLE
-
-        // Shift + Backspace = Delete, see: https://docs.qmk.fm/#/feature_advanced_keycodes?id=shift-backspace-for-delete
-        case KC_BSPC: return vr61_backspace_special(keycode, record); break;
-
-        // Windows Task View
-        case KC_TSKV: return vr61_code_2(record, KC_LWIN, KC_TAB); break;
-
-        // Windows File Explorer
-        case KC_FEXP: return vr61_code_2(record, KC_LWIN, KC_E); break;
-
-        // Windows Cortana
-        case KC_CORT: return vr61_code_2(record, KC_LWIN, KC_C); break;
-
-        // macOS Mission Control
-        case KC_MCON: return vr61_consumer_send(record, _AC_SHOW_ALL_WINDOWS); break;
-
-        // macOS Launchpad
-        case KC_LPAD: return vr61_consumer_send(record, _AC_SHOW_ALL_APPS); break;
-
-        // macOS Siri
-        case KC_SIRI: return vr61_code_2(record, KC_LOPT, KC_SPACE); break;
-
-        // macOS Screen Capture
-        case KC_SCAP: return vr61_code_3(record, KC_LSFT, KC_LCMD, KC_4); break;
-
-        // toggle right modifiers are arrows feature
-        case KB_ARRW:           
-            if (record->event.pressed) {
-                user_config.in_arrow_mode ^= 1;
-                eeconfig_update_user(user_config.raw);
-            }
-            return false; break;
-
-        // right shift or up arrow
-        case KB_RSFT: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RSFT, KC_UP, KC_PGUP); break;
-
-        // right alt or left arrow
-        case KB_RALT: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RALT, KC_LEFT, KC_HOME); break;
-
-        // menu or down arrow (Windows Menu)
-        case KB_RAPP: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_APP, KC_DOWN, KC_PGDN); break;
-
-        // right gui or left arrow (macOS Command)
-        case KB_RCMD: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RGUI, KC_LEFT, KC_HOME); break;
-
-        // right alt or down arrow (macOS Option)// right alt or down arrow (macOS Option)
-        case KB_ROPT: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RALT, KC_DOWN, KC_PGDN); break;
-
-        // right ctrl ot right arrow
-        case KB_RCTL: return vr61_process_special_k(keycode, record, user_config.in_arrow_mode, KC_RCTL, KC_RIGHT, KC_END); break;
-
-        // Reset EEPROM -> Keymap to Defaul
-        case KB_REEP:           
-            rgb_matrix_set_color_all(RGB_MATRIX_MAXIMUM_BRIGHTNESS, 0, RGB_MATRIX_MAXIMUM_BRIGHTNESS);
-            rgb_matrix_driver.flush();
-            wait_ms(10);
-            eeconfig_init_quantum();
-            soft_reset_keyboard();
-            return false;
-            break;
-
-        // debug, type version
-        case KB_VRSN:            
-            if (!get_mods()) {
-                if (!record->event.pressed) {
-                    SEND_STRING(QMK_KEYBOARD ":" QMK_KEYMAP " (v" QMK_VERSION ")");
-                }
-            }
-            return false;
-            break;
-
-        default:
-            return true; /* Process all other keycodes normally */
-            break;
+static void _rgb_matrix_set_color_1to4(uint8_t red, uint8_t green, uint8_t blue) {
+    for (uint8_t i = 1; i <= 4; i++) {
+        rgb_matrix_set_color(i, red, green, blue);
     }
 }
+
+__attribute__ ((weak)) RGB get_layer_indicator_color(uint8_t layer) {
+    HSV hsv = { .h = 0, .s = 0, .v = RGB_MATRIX_MAXIMUM_BRIGHTNESS};
+    switch (layer) {
+        case 0: hsv.v = 0;                        // #000000 black
+        case 1: hsv.h = 170; hsv.s = 255; break;  // #0000FF blue
+        case 2: hsv.h = 85; hsv.s = 255; break;   // #00FF00 green
+        case 3: hsv.h = 213; hsv.s = 255; break;  // #FF00FF magenta
+        case 4: hsv.h = 43; hsv.s = 255; break;   // #FFFF00 yellow
+    }
+    RGB rgb = hsv_to_rgb( hsv );
+    return rgb;
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if(!rgb_matrix_indicators_advanced_tecsmith(led_min, led_max)) {
+        return false;
+    }
+
+    RGB rgb = { .r = 0, .g = 0, .b = 0 };
+    switch(get_highest_layer(layer_state|default_layer_state)) {
+        case _L0: rgb = get_layer_indicator_color(0); break;
+        case _L1: rgb = get_layer_indicator_color(1); break;
+        case _L2: rgb = get_layer_indicator_color(2); break;
+        case _L3: rgb = get_layer_indicator_color(3); break;
+        case _L4: rgb = get_layer_indicator_color(4); break;
+    }
+    _rgb_matrix_set_color_1to4(rgb.r, rgb.g, rgb.b);
+
+    return true;
+}
+
+#endif  // RGB_MATRIX_ENABLE & VIA_ENABLE

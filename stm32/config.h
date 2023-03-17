@@ -3,8 +3,6 @@
 
 #pragma once
 
-#include "config_common.h"
-
 /* 
  * EFL/WL Driver Configuration
  */
@@ -14,7 +12,7 @@
 
 
 /* 
- * External Flash
+ * SPI Configuration & External Flash
  */
 
 #define SPI_DRIVER SPID1
@@ -30,14 +28,12 @@
 #define EXTERNAL_FLASH_ADDRESS_SIZE 3                  // 0x000000 to 0xFFFFFF
 
 /* 
- * RGB Lighting/Matrix Config
+ * RGB Matrix Config
  */
 
 #ifdef RGB_MATRIX_ENABLE
     // The pin connected to the data pin of the LEDs
     #define RGB_DI_PIN C6
-
-    #define DRIVER_LED_TOTAL 5
 
     #define WS2812_PWM_DRIVER PWMD3
     #define WS2812_PWM_CHANNEL 1
@@ -52,21 +48,9 @@
  * ADC Configuration
  */
 
-#define ADC_RESOLUTION ADC_CFGR1_RES_12BIT
-#define ADC_SATURATION ((1 << 12) - 1)
-#define ADC_CURRENT_PIN C5 // ADC12_IN15
-
-
-/* 
- * Audio
- */
-
-// /* AUDIO */
-// #define WS2812_PWM_DRIVER PWMD3
-// #define WS2812_PWM_CHANNEL 1
-// #define WS2812_PWM_PAL_MODE 2
-// #define WS2812_DMA_STREAM STM32_DMA1_STREAM2
-// #define WS2812_DMA_CHANNEL 5
+// #define ADC_RESOLUTION ADC_CFGR1_RES_12BIT
+// #define ADC_SATURATION ((1 << 12) - 1)
+// #define ADC_CURRENT_PIN C5 // ADC12_IN15
 
 
 /*

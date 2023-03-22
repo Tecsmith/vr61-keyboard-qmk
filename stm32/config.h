@@ -3,7 +3,7 @@
 
 #pragma once
 
-/* 
+/*
  * EFL/WL Driver Configuration
  */
 
@@ -11,7 +11,7 @@
 #define WEAR_LEVELING_BACKING_SIZE (WEAR_LEVELING_LOGICAL_SIZE * 2)  // Number of bytes used by the wear-leveling algorithm for its underlying storage, and needs to be a multiple of the logical size.
 
 
-/* 
+/*
  * SPI Configuration & External Flash
  */
 
@@ -27,7 +27,7 @@
 #define EXTERNAL_FLASH_SIZE ((128 / 8) * 1024 * 1000)  // 128Mbit
 #define EXTERNAL_FLASH_ADDRESS_SIZE 3                  // 0x000000 to 0xFFFFFF
 
-/* 
+/*
  * RGB Matrix Config
  */
 

@@ -1,0 +1,110 @@
+{
+    "name": "VR61",
+    "vendorId": "0x1209",
+    "productId": "0x7672",
+    "keycodes": [],
+    "menus": [
+        {
+            "label": "Keyboard",
+            "content": [
+                {
+                    "label": "General",
+                    "content": [
+                        {
+                            "label": "Arrow Right Cluster",
+                            "type": "toggle",
+                            "content": ["id_arrow_mode", 0, 1]
+                        }
+                    ]
+                }
+
+            ]
+        },
+        {
+            "label": "Lighting",
+            "content": [
+                {
+                    "label": "Indicators",
+                    "content": [
+                        {
+                            "label": "Brightness",
+                            "type": "range",
+                            "options": [0, 255],
+                            "content": ["id_brightness", 0, 2]
+                        },
+                        {
+                            "label": "Caps-Lock Color",
+                            "type": "color",
+                            "content": ["id_caps_lock_color", 0, 3]
+                        },
+                        {
+                            "label": "Enable Layer 0 Indicator",
+                            "type": "toggle",
+                            "content": ["id_layer_0_on", 0, 4]
+                        },
+                        {
+                            "showIf": "{id_layer_0_on} == 1",
+                            "label": "Layer 0 Color",
+                            "type": "color",
+                            "content": ["id_layer_color[0]", 0, 5, 0]
+                        },
+                        {
+                            "label": "Layer 1 Color",
+                            "type": "color",
+                            "content": ["id_layer_color[1]", 0, 5, 1]
+                        },
+                        {
+                            "label": "Layer 2 Color",
+                            "type": "color",
+                            "content": ["id_layer_color[2]", 0, 5, 2]
+                        },
+                        {
+                            "label": "Layer 3 Color",
+                            "type": "color",
+                            "content": ["id_layer_color[3]", 0, 5, 3]
+                        },
+                        {
+                            "label": "Layer 4 Color",
+                            "type": "color",
+                            "content": ["id_layer_color[4]", 0, 5, 4]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "matrix": {"rows": 9, "cols": 8},
+    "customKeycodes": [
+        {"shortName": "KC_TASK", "name": "Task View", "title": "Windows Task View"},
+        {"shortName": "KC_FLXP", "name": "File Explorer", "title": "Windows File Explorer"},
+        {"shortName": "KC_CRTA", "name": "Cortana", "title": "Windows Cortana"},
+        {"shortName": "KC_SIRI", "name": "Siri", "title": "macOS Siri"},
+        {"shortName": "KC_SNAP", "name": "Screen Capture", "title": "macOS Screen Capture"},
+      
+        {"shortName": "KC_ARRW", "name": "Toggle Arrows Mode", "title": "Toggle Right Keys are Arrows feature"},
+
+        {"shortName": "SP_RSFT", "name": "Shift / Up", "title": "KC_RSFT or KC_UP"},
+        {"shortName": "SP_RALF", "name": "Alt / Left", "title": "KC_RALT or KC_LEFT"},
+        {"shortName": "SP_RWLF", "name": "Win / Left", "title": "KC_RGUI or KC_LEFT"},
+        {"shortName": "SP_RWDN", "name": "Wib / Down", "title": "KC_RGUI or KC_DOWN"},
+        {"shortName": "SP_RMDN", "name": "Menu / Down", "title": "KC_MENU or KC_DOWN"},
+        {"shortName": "SP_RADN", "name": "Alt / Down", "title": "KC_RALT or KC_DOWN"},
+        {"shortName": "SP_RCTL", "name": "Ctrl / Down", "title": "KC_RCTL or KC_RGHT"},
+
+        {"shortName": "KC_REEP", "name": "Reset EEPROM", "title": "Reset Keymap to Default"},
+        {"shortName": "KC_VRSN", "name": "Version", "title": "Type Firmware Version"}
+    ],
+    "layouts": {
+        "labels": [
+            "ISO Enter",
+            "ISO Left Shift"
+        ],
+        "keymap": [
+            [{"c":"#777777"},"0,0",{"c":"#cccccc"},"0,1","0,2","0,3","0,4","0,5","0,6","0,7","5,0","5,1","5,2","5,3","5,4",{"c":"#aaaaaa","w":2},"5,6"],
+            [{"w":1.5},"1,0",{"c":"#cccccc"},"1,1","1,2","1,3","1,4","1,5","1,6","1,7","6,0","6,1","6,2","6,3","6,4",{"w":1.5},"6,6\n\n\n0,0",{"x":1.25,"c":"#777777","w":1.25,"h":2,"w2":1.5,"h2":1,"x2":-0.25},"7,6\n\n\n0,1"],
+            [{"c":"#aaaaaa","w":1.75},"2,0",{"c":"#cccccc"},"2,1","2,2","2,3","2,4","2,5","2,6","2,7","7,0","7,1","7,2","7,3",{"c":"#777777","w":2.25},"7,6\n\n\n0,0",{"x":0.25,"c":"#cccccc"},"6,6\n\n\n0,1"],
+            [{"c":"#aaaaaa","w":2.25},"3,0\n\n\n1,0",{"c":"#cccccc"},"3,2","3,3","3,4","3,5","3,6","3,7","8,0","8,1","8,2","8,3",{"c":"#aaaaaa","w":2.75},"8,5",{"x":0.25,"w":1.25},"3,0\n\n\n1,1",{"c":"#cccccc"},"3,1\n\n\n1,1"],
+            [{"c":"#aaaaaa","w":1.25},"4,0",{"w":1.25},"4,1",{"w":1.25},"4,2",{"c":"#cccccc","w":6.25},"4,3",{"c":"#aaaaaa","w":1.25},"4,4",{"w":1.25},"4,5",{"w":1.25},"4,6",{"w":1.25},"4,7"]
+        ]
+    }
+}

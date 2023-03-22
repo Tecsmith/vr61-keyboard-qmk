@@ -5,5 +5,5 @@ VIA_ENABLE = yes
 
 KEY_OVERRIDE_ENABLE = yes
 
-VPATH += keyboards/tecsmith/vr61/common
 SRC += tecsmith_common.c
+# SRC += vr61_via_config.c

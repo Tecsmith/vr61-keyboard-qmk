@@ -10,6 +10,7 @@
         "extrakey": true,
         "mousekey": true,
         "nkro": false,
+        "rgblight": false,
         "rgb_matrix": true
     },
     "url": "https://github.com/tecsmith/vr61-keyboard-pcb",
@@ -27,7 +28,7 @@
             { "flags": 4, "matrix": [0, 7], "x": 112, "y": 0 },
             { "flags": 4, "matrix": [5, 0], "x": 128, "y": 0 }
         ]
-    },    
+    },
     "community_layouts": ["60_ansi", "60_iso"],
     "layouts": {
         "LAYOUT_60_ansi": {
@@ -129,6 +130,7 @@
                 {"matrix": [6, 2], "x": 10.5, "y": 1, "label": "P"},
                 {"matrix": [6, 3], "x": 11.5, "y": 1, "label": "[{"},
                 {"matrix": [6, 4], "x": 12.5, "y": 1, "label": "]}"},
+                {"matrix": [7, 6], "x": 13.75, "y": 1, "w": 1.25, "h": 2, "label": "Enter"},
 
                 {"matrix": [2, 0], "x": 0, "y": 2, "w": 1.75, "label": "Caps Lock"},
                 {"matrix": [2, 1], "x": 1.75, "y": 2, "label": "A"},
@@ -142,11 +144,10 @@
                 {"matrix": [7, 1], "x": 9.75, "y": 2, "label": "L"},
                 {"matrix": [7, 2], "x": 10.75, "y": 2, "label": ":;"},
                 {"matrix": [7, 3], "x": 11.75, "y": 2, "label": "'\""},
-                {"matrix": [7, 6], "x": 12.75, "y": 2, "label": "\\|"},
-                {"matrix": [6, 6], "x": 13.75, "y": 1, "w": 1.25, "h": 2, "label": "Enter"},
+                {"matrix": [6, 6], "x": 12.75, "y": 2, "label": "~#"},
 
                 {"matrix": [3, 0], "x": 0, "y": 3, "w": 1.25, "label": "Shift"},
-                {"matrix": [3, 1], "x": 1.25, "y": 3, "label": ""},
+                {"matrix": [3, 1], "x": 1.25, "y": 3, "label": "\\|"},
                 {"matrix": [3, 2], "x": 2.25, "y": 3, "label": "Z"},
                 {"matrix": [3, 3], "x": 3.25, "y": 3, "label": "X"},
                 {"matrix": [3, 4], "x": 4.25, "y": 3, "label": "C"},
@@ -168,6 +169,6 @@
                 {"matrix": [4, 6], "x": 12.5, "y": 4, "w": 1.25, "label": "App"},
                 {"matrix": [4, 7], "x": 13.75, "y": 4, "w": 1.25, "label": "Ctrl"}
             ]
-        }        
+        }
     }
 }

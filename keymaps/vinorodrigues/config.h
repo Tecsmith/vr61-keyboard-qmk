@@ -12,4 +12,8 @@
 #define PERMISSIVE_HOLD
 
 #define VIA_EEPROM_ALLOW_RESET
-#define VIA_EEPROM_CUSTOM_CONFIG_SIZE 13
+// #define VIA_EEPROM_CUSTOM_CONFIG_SIZE 13
+
+#ifdef ISO_ENABLE
+    #define VIA_EEPROM_LAYOUT_OPTIONS_DEFAULT 0x03  // override of the layout options default value.
+#endif

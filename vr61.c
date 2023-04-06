@@ -3,10 +3,6 @@
 
 #include "quantum.h"
 
-#ifdef RGB_MATRIX_ENABLE
-//     #error "Na na na"
-#endif
-
 void keyboard_post_init_kb(void) {
     keyboard_post_init_user();
 

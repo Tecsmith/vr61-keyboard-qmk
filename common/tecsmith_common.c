@@ -3,20 +3,41 @@
 
 #include QMK_KEYBOARD_H
 #include "tecsmith_common.h"
+// #ifdef VIA_ENABLE
+//     #include "vr61_via_config.h"
+// #endif
 
-tecsmith_kb_config_t ts_kb_config;
+__attribute__ ((weak)) tecsmith_kb_config_t ts_kb_config = { .raw = 0 };
 uint32_t ts_keycode_raised = 0;
+
+__attribute__ ((weak)) void load_kb_settings(void) {
+    ts_kb_config.raw = eeconfig_read_kb();
+}
+
+__attribute__ ((weak)) void save_kb_settings(void) {
+    // TODO: maybe delay the write with a timer?
+    eeconfig_update_kb(ts_kb_config.raw);
+}
+
+__attribute__ ((weak)) bool get_arrow_mode(void) {
+    return ts_kb_config.in_arrow_mode;
+}
+
+__attribute__ ((weak)) void set_arrow_mode(bool enabled) {
+    ts_kb_config.in_arrow_mode = enabled;
+    save_kb_settings();
+}
 
 void keyboard_post_init_tecsmith(void) {
     // Read the user config from EEPROM
-    ts_kb_config.raw = eeconfig_read_kb();
+    load_kb_settings();
     ts_keycode_raised = 0;
 }
 
 void eeconfig_init_tecsmith(void) {
     // EEPROM is getting reset!
-    ts_kb_config.raw = 0;
-    eeconfig_update_kb(ts_kb_config.raw);
+    set_arrow_mode(false);
+    save_kb_settings();
 }
 
 void housekeeping_task_tecsmith(void) {
@@ -67,7 +88,7 @@ static bool _process_record_special(uint16_t keycode, keyrecord_t *record, uint8
         is_raised = get_highest_layer(layer_state|default_layer_state) != 0;
         _set_keycode_raised(keycode - TS_KEY_START, is_raised);   // save for key release event
 
-        if (!ts_kb_config.in_arrow_mode) {
+        if (!get_arrow_mode()) {
             if (!is_raised) {
                 register_code( key );
             } else {
@@ -85,7 +106,7 @@ static bool _process_record_special(uint16_t keycode, keyrecord_t *record, uint8
 
         is_raised = _get_keycode_raised(keycode - TS_KEY_START);
 
-        if (!ts_kb_config.in_arrow_mode) {
+        if (!get_arrow_mode()) {
             if (!is_raised) {
                 unregister_code( key );
             } else {
@@ -152,8 +173,7 @@ bool process_record_tecsmith(uint16_t keycode, keyrecord_t *record) {
 
         case KC_ARROW_MODE:
             if (record->event.pressed) {
-                ts_kb_config.in_arrow_mode ^= 1;
-                eeconfig_update_kb(ts_kb_config.raw);  // TODO: maybe delay the write with a timer?
+                set_arrow_mode(!get_arrow_mode());
             }
             return false; break;
 
@@ -212,7 +232,6 @@ bool rgb_matrix_indicators_advanced_tecsmith(uint8_t led_min, uint8_t led_max) {
     return true;
 }
 #endif  // RGB_MATRIX_ENABLE
-
 
 
 /*

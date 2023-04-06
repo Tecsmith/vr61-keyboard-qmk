@@ -60,6 +60,11 @@ enum {
 #define KC_REEP KC_RESET_EEPROM
 #define KC_VRSN KC_VERSION_INFO
 
+void load_kb_settings(void);
+void save_kb_settings(void);
+bool get_arrow_mode(void);
+void set_arrow_mode(bool enabled);
+
 void keyboard_post_init_tecsmith(void);
 void eeconfig_init_tecsmith(void);
 

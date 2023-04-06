@@ -4,6 +4,10 @@
 
 #pragma once
 
+#if defined(VIA_ENABLE) & defined(VIAL_ENABLE)
+    #define MAKING_IN_VIAL
+#endif
+
 /*
  * RGB Lighting Config
  */
@@ -22,7 +26,12 @@
 
     #define CAPS_LOCK_LED_INDEX 0
 
-    #define RGB_MATRIX_LED_COUNT 5
+    #ifdef MAKING_IN_VIAL
+        #define DRIVER_LED_TOTAL 5
+        #define RGBLED_NUM 5
+    #else  // MAKING_IN_VIAL
+        #define RGB_MATRIX_LED_COUNT 5
+    #endif  // MAKING_IN_VIAL
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180  // limits maximum brightness of LEDs to x out of 255. If not defined maximum brightness is set to 255
     #define RGB_MATRIX_DEFAULT_VAL (RGB_MATRIX_MAXIMUM_BRIGHTNESS)  // Sets the default brightness value, if none has been set
 

@@ -20,6 +20,18 @@ __attribute__ ((weak)) RGB get_caps_lock_indicator_color(void) {
     return rgb;
 }
 
+#ifdef MAKING_IN_VIAL
+
+void rgb_matrix_indicators_kb(void) {
+    rgb_matrix_indicators_user();
+    if (host_keyboard_led_state().caps_lock) {
+        RGB rgb = get_caps_lock_indicator_color();
+        rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
+    }
+}
+
+#else   // MAKING_IN_VIAL
+
 bool rgb_matrix_indicators_kb(void) {
     if (!rgb_matrix_indicators_user()) {
         return false;
@@ -30,6 +42,8 @@ bool rgb_matrix_indicators_kb(void) {
     }
     return true;
 }
+
+#endif  // MAKING_IN_VIAL
 
 void rgb_matrix_indicators_none_kb(void) {
     rgb_matrix_indicators_kb();

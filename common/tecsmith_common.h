@@ -19,7 +19,11 @@ typedef union {
     };
 } tecsmith_kb_config_t;
 
-#define TS_KEY_START QK_KB_0
+#ifdef MAKING_IN_VIAL
+    #define TS_KEY_START USER00
+#else
+    #define TS_KEY_START QK_KB_0
+#endif
 
 enum {
     KC_TASK_VIEW = TS_KEY_START,  // Windows Task View

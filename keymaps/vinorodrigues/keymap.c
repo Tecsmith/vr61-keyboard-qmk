@@ -17,6 +17,8 @@ enum {
     _L4
 };
 
+#ifndef MAKING_IN_VIAL
+
 enum {
     MACRO00 = QK_MACRO_0,
     MACRO01 = QK_MACRO_1,
@@ -35,6 +37,8 @@ enum {
     MACRO14 = QK_MACRO_14,
     MACRO15 = QK_MACRO_15
 };
+
+#endif  // MAKING_IN_VIAL
 
 /* Special Keys */
 #define SK_LT1C LT(_L1, KC_CAPS)  // Layer Tap 1, i.e., Tap = Caps Lock, Hold = Layer 1
@@ -189,6 +193,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Key Overrides
  */
 
+#ifndef MAKING_IN_VIAL
+
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t tilde_esc_override = ko_make_basic(MOD_MASK_SHIFT, KC_ESC, S(KC_GRV));
 const key_override_t grave_esc_override = ko_make_basic(MOD_MASK_GUI, KC_ESC, KC_GRV);
@@ -200,6 +206,8 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &grave_esc_override,
     NULL  // Null terminate the array of overrides!
 };
+
+#endif  // MAKING_IN_VIAL
 
 // clang-format on
 
@@ -247,10 +255,19 @@ __attribute__ ((weak)) RGB get_layer_indicator_color(uint8_t layer) {
     return rgb;
 }
 
+#ifdef MAKING_IN_VIAL
+
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    rgb_matrix_indicators_advanced_tecsmith(led_min, led_max);
+
+#else  // MAKING_IN_VIAL
+
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if(!rgb_matrix_indicators_advanced_tecsmith(led_min, led_max)) {
         return false;
     }
+
+#endif  // MAKING_IN_VIAL
 
     RGB rgb = { .r = 0, .g = 0, .b = 0 };
     switch(get_highest_layer(layer_state|default_layer_state)) {
@@ -262,7 +279,9 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     }
     _rgb_matrix_set_color_1to4(rgb.r, rgb.g, rgb.b);
 
+    #ifndef MAKING_IN_VIAL
     return true;
+    #endif  // MAKING_IN_VIAL
 }
 
 #endif  // RGB_MATRIX_ENABLE & VIA_ENABLE

@@ -1,10 +1,10 @@
-// Copyright 2023 Vino Rodrigues (@vinorodrigues)
+// Copyright 2023 SilvinoR (@silvinor)
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include QMK_KEYBOARD_H
-#include "tecsmith_common.h"
+#include "sr61_common.h"
 // #ifdef VIA_ENABLE
-//     #include "vr61_via_config.h"
+//     #include "sr61_via_config.h"
 // #endif
 
 __attribute__ ((weak)) tecsmith_kb_config_t ts_kb_config = { .raw = 0 };
@@ -46,7 +46,7 @@ void housekeeping_task_tecsmith(void) {
 
 static bool _process_record_code_2(keyrecord_t *record, uint16_t data1, uint16_t data2) {
     if (record->event.pressed) {
-        register_code(data1);  
+        register_code(data1);
         register_code(data2);
     } else {
         unregister_code(data2);
@@ -185,7 +185,7 @@ bool process_record_tecsmith(uint16_t keycode, keyrecord_t *record) {
         case SPECIAL_RALT_OR_DOWN: return _process_record_special(keycode, record, KC_RALT, KC_DOWN, KC_DOWN, KC_PGDN); break;
         case SPECIAL_RCTL_OR_RGHT: return _process_record_special(keycode, record, KC_RCTL, KC_RGHT, KC_RGHT, KC_END ); break;
 
-        case KC_RESET_EEPROM: 
+        case KC_RESET_EEPROM:
             #ifdef RGB_MATRIX_ENABLE
             rgb_matrix_set_color_all(RGB_MATRIX_MAXIMUM_BRIGHTNESS, 0, RGB_MATRIX_MAXIMUM_BRIGHTNESS);  // Magenta
             rgb_matrix_driver.flush();
@@ -195,13 +195,13 @@ bool process_record_tecsmith(uint16_t keycode, keyrecord_t *record) {
             soft_reset_keyboard();
             return false;
             break;
-        
+
         case KC_VERSION_INFO:
             if (!record->event.pressed) {
                 #if defined(VIA_ENABLE) || defined(VIAL_ENABLE)
                 char str[6];
                 #endif  // VIA_ENABLE || VIAL_ENABLE
-                
+
                 SEND_STRING_DELAY( QMK_KEYBOARD ":" QMK_KEYMAP " (QMK v" QMK_VERSION , 0 );
 
                 #ifdef VIA_ENABLE
@@ -236,7 +236,7 @@ bool rgb_matrix_indicators_advanced_tecsmith(uint8_t led_min, uint8_t led_max) {
 
 /*
 
-bool vr61_consumer_send(keyrecord_t *record, uint16_t data) {
+bool sr61_consumer_send(keyrecord_t *record, uint16_t data) {
     if (record->event.pressed) {
         host_consumer_send(data);
     } else {
@@ -251,11 +251,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // handle RGB toggle key - this ensures caps lock always works
 
         // macOS Mission Control
-        // case KC_MCTL: return vr61_consumer_send(record, _AC_SHOW_ALL_WINDOWS); break;
+        // case KC_MCTL: return sr61_consumer_send(record, _AC_SHOW_ALL_WINDOWS); break;
 
         // macOS Launchpad
-        // case KC_LPAD: return vr61_consumer_send(record, _AC_SHOW_ALL_APPS); break;
+        // case KC_LPAD: return sr61_consumer_send(record, _AC_SHOW_ALL_APPS); break;
 
-}  
+}
 
 */

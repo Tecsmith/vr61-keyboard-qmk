@@ -1,4 +1,4 @@
-# Copyright 2022 Vino Rodrigues (@vinorodrigues)
+# Copyright 2022 SilvinoR (@silvinor)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 OPT_DEFS += -DMICROMOD_STM32
@@ -16,5 +16,3 @@ OPT = g
 OPT_DEFS += -g
 
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE  # Enter lower-power sleep mode when on the ChibiOS idle thread
-
-VPATH += keyboards/tecsmith/vr61/common

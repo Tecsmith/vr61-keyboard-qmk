@@ -1,10 +1,10 @@
-// Copyright 2022 Vino Rodrigues (@vinorodrigues)
+// Copyright 2022 SilvinoR (@silvinor)
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include QMK_KEYBOARD_H
-#include "tecsmith_common.h"
+#include "sr61_common.h"
 // #ifdef VIA_ENABLE
-//     #include "vr61_via_config.h"
+//     #include "sr61_via_config.h"
 // #endif
 
 // clang-format off

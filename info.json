@@ -1,7 +1,7 @@
 {
     "manufacturer": "Tecsmith",
-    "keyboard_name": "VR61",
-    "maintainer": "vinorodrigues",
+    "keyboard_name": "SR61",
+    "maintainer": "silvinor",
     "diode_direction": "ROW2COL",
     "features": {
         "bootmagic": true,
@@ -13,7 +13,7 @@
         "rgblight": false,
         "rgb_matrix": true
     },
-    "url": "https://github.com/tecsmith/vr61-keyboard-pcb",
+    "url": "https://github.com/tecsmith/sr61-keyboard-fw",
     "usb": {
         "vid": "0x1209",
         "pid": "0x7672",

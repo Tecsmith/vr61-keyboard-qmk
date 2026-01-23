@@ -1,5 +1,5 @@
 {
-    "name": "VR61",
+    "name": "SR61",
     "vendorId": "0x1209",
     "productId": "0x7672",
     "keycodes": [],
@@ -10,7 +10,7 @@
         {"shortName": "KC_CRTA", "name": "Cortana", "title": "Windows Cortana"},
         {"shortName": "KC_SIRI", "name": "Siri", "title": "macOS Siri"},
         {"shortName": "KC_SNAP", "name": "Screen Capture", "title": "macOS Screen Capture"},
-      
+
         {"shortName": "KC_ARRW", "name": "Toggle Arrows Mode", "title": "Toggle Right Keys are Arrows feature"},
 
         {"shortName": "SP_RSFT", "name": "Shift / Up", "title": "KC_RSFT or KC_UP"},

@@ -1,4 +1,4 @@
-// Copyright 2022 Vino Rodrigues (@vinorodrigues)
+// Copyright 2022 SilvinoR (@silvinor)
 // SPDX-License-Identifier: GPL-3.0-or-later
 // ***** RP2040 config.h FILE *****
 
@@ -14,7 +14,7 @@
 #define SPI_MISO_PIN GP20
 
 
-/* 
+/*
  * RGB Matrix Config
  */
 

@@ -1,4 +1,4 @@
-# Copyright 2022 Vino Rodrigues (@vinorodrigues)
+# Copyright 2022 SilvinoR (@silvinor)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 OPT_DEFS += -DMICROMOD_RP2040  # #define
@@ -9,5 +9,3 @@ WS2812_DRIVER = vendor
 
 # Project specific files
 QUANTUM_LIB_SRC += spi_master.c
-
-VPATH += keyboards/tecsmith/vr61/common
